@@ -3,9 +3,11 @@ package com.project.thuexe.Response;
 import com.project.thuexe.dtos.CarDTO;
 import com.project.thuexe.enums.TrangThaiXe;
 import com.project.thuexe.models.Car;
+import com.project.thuexe.models.CarImage;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Builder
@@ -41,8 +43,10 @@ public class CarResponse extends BaseReponse {
     private String thoi_gian_giao_xe;
     private String chinh_sach_huy;
     private Long id_chuxe;
+    private List<ImgReponse> list_img;
 
-    public static CarResponse fromCar(Car car){
+    public static CarResponse fromCar(Car car,List<ImgReponse> list_img){
+
         CarResponse carResponse = CarResponse.builder()
                 .id_xe(car.getIdXe())
                 .tenxe(car.getTenXe())
@@ -67,6 +71,8 @@ public class CarResponse extends BaseReponse {
                 .tien_ich(car.getTien_ich())
                 .mo_ta_dai(car.getMoTaDai())
                 .muc_tieu_hao_nhien_lieu(car.getMuc_tieu_hao_nhien_lieu())
+                .list_img(list_img)
+
 
 
                 .build();

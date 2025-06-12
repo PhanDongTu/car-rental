@@ -1,6 +1,7 @@
 package com.project.thuexe.controller;
 
 import com.project.thuexe.Response.CarResponse;
+import com.project.thuexe.Response.ImgReponse;
 import com.project.thuexe.dtos.CarDTO;
 import com.project.thuexe.dtos.CarImageDTO;
 import com.project.thuexe.models.Car;
@@ -176,8 +177,11 @@ public class CarController {
 
 
         try {
+            List<CarImage> exisingImgcar = carServices.getCarImage(id);
+            List<ImgReponse> reponsesImg = ImgReponse.fromImg(exisingImgcar);
             Car exisingCar = carServices.getCarById(id);
-            return ResponseEntity.ok(CarResponse.fromCar(exisingCar));
+
+            return ResponseEntity.ok(CarResponse.fromCar(exisingCar, reponsesImg));
         }catch (Exception e){
             return ResponseEntity.ok().body("Xe có ID: " + id);
         }

@@ -8,4 +8,5 @@ import java.util.List;
 public interface CarImgRepository extends JpaRepository<CarImage,Integer> {
     List<CarImage> findByCarIdXe(Long carIdXe);
 
+
 }

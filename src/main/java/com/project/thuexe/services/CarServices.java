@@ -1,6 +1,7 @@
 package com.project.thuexe.services;
 
 import com.project.thuexe.Response.CarResponse;
+import com.project.thuexe.Response.ImgReponse;
 import com.project.thuexe.dtos.CarDTO;
 import com.project.thuexe.dtos.CarImageDTO;
 import com.project.thuexe.exceoptions.DataNotFoundException;
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -112,7 +115,11 @@ public class CarServices implements ICarServices {
 
     @Override
     public Page<CarResponse> getAllCars(PageRequest pageRequest) {
-        return carRepository.findAll(pageRequest).map(CarResponse::fromCar);
+        return carRepository.findAll(pageRequest).map(car -> {
+            List<CarImage> images = carImgRepository.findByCarIdXe(car.getIdXe());
+            List<ImgReponse> imgReponses = ImgReponse.fromImg(images);
+            return CarResponse.fromCar(car, imgReponses);
+        });
 
 
     }
@@ -147,5 +154,10 @@ public class CarServices implements ICarServices {
 
 
        return carImgRepository.save(newCarImage);
+    }
+
+    @Override
+    public List<CarImage> getCarImage(long imageId) throws Exception {
+        return carImgRepository.findByCarIdXe(imageId);
     }
 }

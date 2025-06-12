@@ -28,4 +28,6 @@ public interface ICarServices {
 
     CarImage createCarImage(Long carId, CarImageDTO carImageDTO) throws Exception;
 
+    List<CarImage> getCarImage(long imageId) throws Exception;
+
 }
