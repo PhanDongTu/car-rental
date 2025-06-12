@@ -63,7 +63,7 @@ public class UserDTO {
     private LocalDateTime ngayXacMinhBangLai;
 
     @JsonProperty("khoa_tk")
-    private Boolean khoaTk;
+    private Integer khoaTk;
 
     @JsonProperty("created_at")
     private LocalDateTime createdAt;

@@ -3,6 +3,7 @@ package com.project.thuexe.controller;
 
 import com.project.thuexe.dtos.UserDTO;
 import com.project.thuexe.dtos.UserLoginDTO;
+import com.project.thuexe.models.User;
 import com.project.thuexe.repositories.UserRepository;
 import com.project.thuexe.services.IUserServices;
 import jakarta.validation.Valid;
@@ -23,7 +24,7 @@ import java.util.List;
 public class UserController {
     private final IUserServices userServices;
     @PostMapping("/register")
-    public ResponseEntity<?> createUser(
+    public ResponseEntity<?> createUser (
             @Valid @RequestBody UserDTO userDTO,
                           BindingResult result){
         try {
@@ -36,8 +37,8 @@ public class UserController {
                 return ResponseEntity.badRequest().body(errorsMessages);
 
             }
-            userServices.createUser(userDTO);
-            return ResponseEntity.ok().body("Dang ky thanh cong"+userDTO);
+           User user = userServices.createUser(userDTO);
+            return ResponseEntity.ok(user);
 
         }catch (Exception e){
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -47,12 +48,16 @@ public class UserController {
     }
     @PostMapping("/login")
     public ResponseEntity<String> login(
-            @Valid @RequestBody UserLoginDTO userLoginDTO){
+            @Valid @RequestBody UserLoginDTO userLoginDTO) throws Exception{
+        try {
+            String token = userServices.login(userLoginDTO.getSoDienThoai(), userLoginDTO.getMatKhau());
+            return ResponseEntity.ok().body(token);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
 
-        String token = userServices.login(userLoginDTO.getSoDienThoai(),userLoginDTO.getMatKhau());
-       return ResponseEntity.ok().body("some token");
+
+
 
     }
-
-
 }

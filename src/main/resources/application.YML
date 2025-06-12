@@ -18,3 +18,9 @@ spring:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
+jwt:
+  expiration: 259200
+  secretKey: dXNlcl9zZWNyZXRfa2V5XzMyX2J5dGVfbG9uZ2Vub3VnaA==
+
+
+

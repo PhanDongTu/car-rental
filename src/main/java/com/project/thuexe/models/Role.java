@@ -28,4 +28,13 @@ public class Role {
 
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+
+    public static String ADMIN = "quantri";
+    public static String ADMINISTRATOR = "nhanvien";
+    public static String CAR_OWNER = "chuxe";
+    public static String USER = "khach";
+
+
+
+
 }

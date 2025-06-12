@@ -16,7 +16,7 @@ public class UserLoginDTO {
     private String soDienThoai;
 
     @JsonProperty("mat_khau")
-    @NotBlank(message = "khong de trong so dien thoai")
+    @NotBlank(message = "khong de trong mat khau")
     private String matKhau;
 
 

@@ -41,8 +41,6 @@ public class OrderDTO {
     @JsonProperty("phongthuc_nhanxe")
     private PhuongThucNhanXe phongthuc_nhanxe;
 
-    @JsonProperty("diachi_giaoxe")
-    private String diachi_giaoxe;
 
     @JsonProperty("phi_giaoxe")
     private BigDecimal phi_giaoxe;
@@ -50,11 +48,9 @@ public class OrderDTO {
     @JsonProperty("trangthai")
     private TrangThaiDonThue trangThaiDonThue;
 
-    @JsonProperty("chuxe_xacnhan")
-    private boolean chuxe_xacnhan;
 
-    @JsonProperty("ngaytao")
-    private LocalDateTime ngaytao;
+    @JsonProperty("ngaygiao")
+    private LocalDateTime ngaygiao;
 
     @JsonProperty("gia_tri_khuyenmai")
     private BigDecimal gia_tri_khuyenmai;

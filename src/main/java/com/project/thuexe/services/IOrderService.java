@@ -8,10 +8,10 @@ import java.util.List;
 
 public interface IOrderService {
     public Order createOrder (OrderDTO  orderDTO) throws Exception;
-    OrderReponse updateOrder (OrderDTO  orderDTO);
-    OrderReponse getOrder (OrderDTO  orderDTO);
+    Order updateOrder (long OrderId,OrderDTO orderDTO) throws Exception;
+    Order getOrderId (long id) throws Exception;
 
-    void deleteOrder (OrderDTO  orderDTO);
+    void deleteOrder (long id)throws Exception;
 
-    List<OrderReponse> getAllOrders (OrderDTO  orderDTO);
+    List<Order> findByUserId (long id) throws Exception;
 }

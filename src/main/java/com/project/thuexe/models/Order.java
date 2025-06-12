@@ -6,7 +6,6 @@ import com.project.thuexe.enums.*;
 
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Entity
 @Table(name = "donthue")
@@ -54,9 +53,6 @@ public class Order extends BaseEntity {
     @JsonProperty("phuongthuc_nhanxe")
     private PhuongThucNhanXe phuongThucNhanXe;
 
-    @Column(name = "diachi_giaoxe")
-    @JsonProperty("diachi_giaoxe")
-    private String diaChiGiaoXe;
 
     @Column(name = "phi_giaoxe")
     @JsonProperty("phi_giaoxe")
@@ -67,13 +63,9 @@ public class Order extends BaseEntity {
     @JsonProperty("trangthai")
     private TrangThaiDonThue trangThai;
 
-    @Column(name = "chuxe_xacnhan")
-    @JsonProperty("chuxe_xacnhan")
-    private Boolean chuXeXacNhan;
-
-    @Column(name = "ngaytao")
+    @Column(name = "ngaygiao")
     @JsonProperty("ngaygiao")
-    private LocalDateTime ngayTao;
+    private LocalDateTime ngayGiao;
 
     @Column(name = "gia_tri_khuyenmai")
     @JsonProperty("gia_tri_khuyenmai")

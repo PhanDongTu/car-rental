@@ -7,6 +7,7 @@ import com.project.thuexe.dtos.UserDTO;
 import com.project.thuexe.models.Order;
 import com.project.thuexe.services.ICarServices;
 import com.project.thuexe.services.IOrderService;
+import com.project.thuexe.services.OrderServices;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -58,18 +59,51 @@ public class OrdersController {
 
 
     }
-    @GetMapping("/{user_id}")
+    @GetMapping("user/{user_id}")
     public ResponseEntity<?> getOrders(@Valid @PathVariable("user_id") Long user_id) {
-        return ResponseEntity.ok().body("Xe có ID: " + user_id);
+        try {
+            List<Order> orders = orderService.findByUserId(user_id);
+            return ResponseEntity.ok(orders);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
     }
+    @GetMapping("{id}")
+    public ResponseEntity<?> getOrder(@Valid @PathVariable("id") Long id) {
+        try {
+            Order order = orderService.getOrderId(id);
+            return ResponseEntity.ok(order);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+
+
+    }
+
+
+
     @PutMapping("/{id}")
     public ResponseEntity<?> updateOrder(@Valid @PathVariable Long id,
                                           @Valid @RequestBody OrderDTO orderDTO
                                           ) {
-        return ResponseEntity.ok().body("da cap nhat donthue : " + orderDTO);
+        try {
+            Order order = orderService.updateOrder(id, orderDTO);
+            return ResponseEntity.ok().body(order);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteOrder(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body("Đã xóa don thue ID: " + id);
+
+        try {
+            orderService.deleteOrder(id);
+            return ResponseEntity.ok("Đã xoá don thue: " + id);
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Xoá thất bại có lổi xảy ra");
+        }
+
+
     }
 }
